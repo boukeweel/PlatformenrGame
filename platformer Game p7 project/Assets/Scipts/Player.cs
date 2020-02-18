@@ -116,12 +116,13 @@ public class Player : MonoBehaviour
                 jumps++;
                 S_Xasis = Xaxis;
                 S_Speed = speed;
-                rig2d.velocity = Vector2.up * Jumpingforce;
+                
                 grounded = false;
             }
             if(grounded == false)
             {
-
+                rig2d.velocity = Vector2.up * 10;
+                jumps++;
             }
                 
             
