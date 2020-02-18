@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using XboxCtrlrInput;
 
-public enum Jumpingstate
+public enum PlayerStatus
 {
-    Grounded,
-    Preparing,
+    Idel,
+    Walking,
+    Running,
     Jumping,
-    Landing,
+    Sliding,
+    
 }
 
 
@@ -21,8 +23,8 @@ public class Player : MonoBehaviour
     float jumps = 0;
     public float Jumpingforce = 2f;
     bool grounded = false;
-    public float MaxJumpingHeigt;
-    float S_Jumpingforce;
+    
+    
 
 
     Rigidbody2D rig2d;
@@ -36,7 +38,7 @@ public class Player : MonoBehaviour
     float S_Xasis;
 
     Vector3 movement;
-    //public Jumpingstate M_jumpingstate = Jumpingstate.Grounded;
+    public PlayerStatus playerStatus = PlayerStatus.Idel;
 
     SpriteRenderer srend;
 
@@ -49,12 +51,17 @@ public class Player : MonoBehaviour
     public bool allowedTomove;
 
 
+    Animator ani;
+
+    bool Spriting = false;
+    
+
     private void Start()
     {
         rig2d = GetComponent<Rigidbody2D>();
         S_Speed = speed;
-        S_Jumpingforce = Jumpingforce;
         srend = GetComponent<SpriteRenderer>();
+        ani = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -66,10 +73,12 @@ public class Player : MonoBehaviour
         if (XCI.GetButtonDown(XboxButton.LeftBumper, PlayerNumber))
         {
             speed *= 1.5f;
+            Spriting = true;
         }
         if (XCI.GetButtonUp(XboxButton.LeftBumper, PlayerNumber))
         {
             speed /= 1.5f;
+            Spriting = false;
         }
 
         //movement
@@ -85,38 +94,38 @@ public class Player : MonoBehaviour
         if(Xaxis > 0.1f)
         {
             srend.flipX = false;
+            
         }
         if(Xaxis < -0.1f)
         {
             srend.flipX = true;
         }
+        
+        
+        
+
+        
+        // jump
+        if(XCI.GetButtonDown(XboxButton.A, PlayerNumber) && jumps < MaxJumping)
+        {
+           
             
-        
-        
-        //jump heiger if you hold 
-        if (XCI.GetButton(XboxButton.A, PlayerNumber) && grounded == true)
-        {
-            Jumpingforce += 0.1f;
-            if(Jumpingforce > MaxJumpingHeigt)
+            if(grounded == true)
             {
-                Jumpingforce = MaxJumpingHeigt + 1;
+                rig2d.velocity = Vector2.up * Jumpingforce;
+                jumps++;
+                S_Xasis = Xaxis;
+                S_Speed = speed;
+                rig2d.velocity = Vector2.up * Jumpingforce;
+                grounded = false;
             }
-        }
-        //jump
-        if (XCI.GetButtonUp(XboxButton.A, PlayerNumber) && grounded == true)
-        {
-            S_Xasis = Xaxis;
-            S_Speed = speed;
-            rig2d.velocity = Vector2.up * Jumpingforce;
-            Jumpingforce = S_Jumpingforce;
-            jumps++;
-            grounded = false;
-        }
-        //double jump
-        if(XCI.GetButtonDown(XboxButton.A, PlayerNumber) && jumps < MaxJumping && grounded == false)
-        {
-            rig2d.velocity = Vector2.up * 10;
-            jumps++;
+            if(grounded == false)
+            {
+
+            }
+                
+            
+            
         }
 
         if(XCI.GetButtonDown(XboxButton.B,PlayerNumber) && grounded == true)
@@ -132,6 +141,59 @@ public class Player : MonoBehaviour
             rig2d.AddForce(Vector2.left * slidingspeed);
         }
 
+        WelkeState();
+
+    }
+
+    private void WelkeState()
+    {
+        if (Xaxis == 0.0f)
+        {
+            playerStatus = PlayerStatus.Idel;
+        }
+        else if (Spriting == true)
+        {
+            playerStatus = PlayerStatus.Running;
+        }
+        else 
+        {
+            playerStatus = PlayerStatus.Walking;
+        }
+        if (grounded == false)
+        {
+            playerStatus = PlayerStatus.Jumping;
+        }
+        if (sliding == true)
+        {
+            playerStatus = PlayerStatus.Sliding;
+        }
+        
+        ChangeAnimation();
+    }
+    
+    //change de animation
+    private void ChangeAnimation()
+    {
+        if(playerStatus == PlayerStatus.Idel)
+        {
+            ani.SetInteger("Welke", 0);
+        }
+        if(playerStatus == PlayerStatus.Walking)
+        {
+            ani.SetInteger("Welke", 1);
+        }
+        if(playerStatus == PlayerStatus.Running)
+        {
+            ani.SetInteger("Welke", 2);
+        }
+        if (playerStatus == PlayerStatus.Jumping)
+        {
+
+        }
+        if(playerStatus == PlayerStatus.Sliding)
+        {
+
+        }
     }
     public void Slidding()
     {
@@ -157,6 +219,7 @@ public class Player : MonoBehaviour
         if (collision.collider.CompareTag("Ground"))
         {
             grounded = true;
+            
             jumps = 0;
         }
     }
