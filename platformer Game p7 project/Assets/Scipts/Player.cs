@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     [Header("Jumping Varibelen")]
     //everything for jumping
     public float MaxJumping = 2;
-    float jumps = 0;
+    public float jumps = 0;
     public float Jumpingforce = 2f;
     bool grounded = false;
     
@@ -105,20 +105,28 @@ public class Player : MonoBehaviour
             if(grounded == true)
             {
                 rig2d.velocity = Vector2.up * Jumpingforce;
-                jumps++;
                 S_Xasis = Xaxis;
                 S_Speed = speed;
                 
                 grounded = false;
             }
-            if(grounded == false)
+            if (grounded == false)
             {
-                rig2d.velocity = Vector2.up * 14;
-                jumps++;
+                if (jumps == 1)
+                {
+                    rig2d.velocity = Vector2.up * 10;
+                    jumps++;
+
+                }
+
             }
-                
-            
-            
+
+
+
+        }
+        if (XCI.GetButtonUp(XboxButton.A, PlayerNumber))
+        {
+            jumps++;
         }
 
         if(XCI.GetButtonDown(XboxButton.B,PlayerNumber) && grounded == true)
@@ -192,10 +200,11 @@ public class Player : MonoBehaviour
     {
         sliding = true;
 
-        //normaleCol.enabled = false;
-        //SlidingCol.enabled = true;
-
+        SlidingCol.enabled = true;
+        normaleCol.enabled = false;
         
+
+
         StartCoroutine("stopSliding");
 
     }
@@ -203,6 +212,9 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(0.8f);
         sliding = false;
+        normaleCol.enabled = true;
+        SlidingCol.enabled = false;
+
 
     }
 
@@ -215,6 +227,11 @@ public class Player : MonoBehaviour
             
             jumps = 0;
         }
+    }
+
+    public void Powerup(float ADDJumpingHeigth,float ADDspeed)
+    {
+
     }
 
 
