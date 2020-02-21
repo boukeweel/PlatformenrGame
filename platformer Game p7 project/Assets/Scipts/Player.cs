@@ -72,26 +72,18 @@ public class Player : MonoBehaviour
         //sprinting
         if (XCI.GetButtonDown(XboxButton.LeftBumper, PlayerNumber))
         {
-            speed *= 1.5f;
+            speed = 12f;
             Spriting = true;
         }
         if (XCI.GetButtonUp(XboxButton.LeftBumper, PlayerNumber))
         {
-            speed /= 1.5f;
+            speed = 6f;
             Spriting = false;
         }
 
         //movement
-        if(grounded == true)
-        {
-            transform.Translate(new Vector3(Xaxis * Time.deltaTime * speed, 0f, 0f));
-        }
-        else
-        {
-            //On Jumping not ably to move
-            transform.Translate(new Vector3(S_Xasis * Time.deltaTime * S_Speed, 0f, 0f));
-        }
-        if(Xaxis > 0.1f)
+        transform.Translate(new Vector3(Xaxis * Time.deltaTime * speed, 0f, 0f));
+        if (Xaxis > 0.1f)
         {
             srend.flipX = false;
             
@@ -106,7 +98,7 @@ public class Player : MonoBehaviour
 
         
         // jump
-        if(XCI.GetButtonDown(XboxButton.A, PlayerNumber) && jumps < MaxJumping)
+        if(XCI.GetButtonDown(XboxButton.A, PlayerNumber))
         {
            
             
@@ -121,7 +113,7 @@ public class Player : MonoBehaviour
             }
             if(grounded == false)
             {
-                rig2d.velocity = Vector2.up * 10;
+                rig2d.velocity = Vector2.up * 14;
                 jumps++;
             }
                 
