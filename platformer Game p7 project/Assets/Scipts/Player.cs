@@ -57,7 +57,8 @@ public class Player : MonoBehaviour
 
 
     //for Powerup hold
-    bool gotPowerup;
+    bool gotspeedpowerup;
+    bool gotjumppowerup;
     float JumpHeigthPowerup;
     float SpeedPowerup;
     float timeforPowerup;
@@ -238,10 +239,7 @@ public class Player : MonoBehaviour
     }
 
 
-    public void Powerup(float ADDJumpingHeigth, float ADDspeed, float lastingtime)
-    {
-        
-    }
+    
 
 
 }

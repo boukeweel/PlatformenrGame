@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb1b777cd0a60b74f8b203da737d821b, type: 3}
   m_Name: jumpheigtpowerup
   m_EditorClassIdentifier: Assembly-CSharp::Pow
-  ADDjumpingHeigth: 15
+  ADDjumpingHeigth: 0
   ADDspeed: 0
+  timeforPowerup: 0

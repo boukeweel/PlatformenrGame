@@ -12,8 +12,8 @@ public class DePowerup : MonoBehaviour
         {
             Player p = other.gameObject.GetComponent<Player>();
             print("aangeraakt");
-            p.Powerup(powerup.ADDjumpingHeigth, powerup.ADDspeed,powerup.timeforPowerup);
-            Destroy(gameObject, 0.5f);
+            //p.Powerup(powerup.ADDjumpingHeigth, powerup.ADDspeed,powerup.timeforPowerup);
+            Destroy(gameObject, 0.1f);
         }
     }
 }
