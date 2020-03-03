@@ -54,7 +54,13 @@ public class Player : MonoBehaviour
     Animator ani;
 
     bool Spriting = false;
-    
+
+
+    //for Powerup hold
+    bool gotPowerup;
+    float JumpHeigthPowerup;
+    float SpeedPowerup;
+    float timeforPowerup;
 
     private void Start()
     {
@@ -230,9 +236,9 @@ public class Player : MonoBehaviour
         
 
     }
-    
 
-    public void Powerup(float ADDJumpingHeigth,float ADDspeed)
+
+    public void Powerup(float ADDJumpingHeigth, float ADDspeed, float lastingtime)
     {
         
     }
