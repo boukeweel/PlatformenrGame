@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: eb1b777cd0a60b74f8b203da737d821b, type: 3}
   m_Name: jumpheigtpowerup
   m_EditorClassIdentifier: Assembly-CSharp::Pow
-  ADDjumpingHeigth: 5
+  ADDjumpingHeigth: 15
   ADDspeed: 0

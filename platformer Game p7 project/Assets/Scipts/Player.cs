@@ -227,11 +227,14 @@ public class Player : MonoBehaviour
             
             jumps = 0;
         }
+        
+
     }
+    
 
     public void Powerup(float ADDJumpingHeigth,float ADDspeed)
     {
-
+        
     }
 
 
