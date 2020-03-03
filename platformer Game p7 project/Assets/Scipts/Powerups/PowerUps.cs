@@ -7,4 +7,5 @@ public class PowerUps : ScriptableObject
 {
     public float ADDjumpingHeigth;
     public float ADDspeed;
+    public float timeforPowerup;
 }
