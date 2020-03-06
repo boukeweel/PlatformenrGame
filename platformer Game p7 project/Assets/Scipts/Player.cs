@@ -113,23 +113,21 @@ public class Player : MonoBehaviour
         }
 
         // jump
-        if (XCI.GetButtonDown(XboxButton.A, PlayerNumber))
+        if (XCI.GetButtonDown(XboxButton.A, PlayerNumber) == true)
         {
             if (grounded == true)
             {
                 rig2d.velocity = Vector2.up * Jumpingforce;
                 S_Xasis = Xaxis;
                 S_Speed = speed;
+                jumps = 1;
 
                 grounded = false;
 
             }
         }
 
-        if (XCI.GetButtonUp(XboxButton.A, PlayerNumber))
-        {
-            jumps = jumps + 1 ;
-        }
+        
 
         if (XCI.GetButtonDown(XboxButton.B,PlayerNumber) && grounded == true)
         {
@@ -235,7 +233,10 @@ public class Player : MonoBehaviour
         if (collision.collider.CompareTag("Ground"))
         {
             grounded = false;
-            jumps = 1;
+            if(jumps < 1)
+            {
+                jumps  = 1;
+            }
         }
     }
 
