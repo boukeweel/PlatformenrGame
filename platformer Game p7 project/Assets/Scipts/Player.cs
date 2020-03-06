@@ -99,44 +99,39 @@ public class Player : MonoBehaviour
         {
             srend.flipX = true;
         }
-        
-        
-        
 
-        
-        // jump
-        if(XCI.GetButtonDown(XboxButton.A, PlayerNumber))
+
+
+        if (XCI.GetButtonDown(XboxButton.A, PlayerNumber) && grounded == false)
         {
-           
-            
-            if(grounded == true)
+            if (jumps < MaxJumping)
+            {
+                rig2d.velocity = Vector2.up * 10;
+                jumps = jumps + 1;
+
+            }
+        }
+
+        // jump
+        if (XCI.GetButtonDown(XboxButton.A, PlayerNumber))
+        {
+            if (grounded == true)
             {
                 rig2d.velocity = Vector2.up * Jumpingforce;
                 S_Xasis = Xaxis;
                 S_Speed = speed;
-                
+
                 grounded = false;
-            }
-            if (grounded == false)
-            {
-                if (jumps == 1)
-                {
-                    rig2d.velocity = Vector2.up * 10;
-                    jumps++;
-
-                }
 
             }
-
-
-
         }
+
         if (XCI.GetButtonUp(XboxButton.A, PlayerNumber))
         {
-            jumps++;
+            jumps = jumps + 1 ;
         }
 
-        if(XCI.GetButtonDown(XboxButton.B,PlayerNumber) && grounded == true)
+        if (XCI.GetButtonDown(XboxButton.B,PlayerNumber) && grounded == true)
         {
             Slidding();
         }
@@ -234,12 +229,18 @@ public class Player : MonoBehaviour
             
             jumps = 0;
         }
-        
-
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Ground"))
+        {
+            grounded = false;
+            jumps = 1;
+        }
     }
 
 
-    
+
 
 
 }
