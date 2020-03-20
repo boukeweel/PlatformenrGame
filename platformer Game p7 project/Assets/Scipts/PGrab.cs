@@ -1,22 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using XboxCtrlrInput;
 using UnityEngine;
+using XboxCtrlrInput;
 
-public class Doos : MonoBehaviour
+public class PGrab : MonoBehaviour
 {
-    private Player p;
+    public Player p;
     private void Start()
     {
-        p.GetComponent<Player>();
+        p = GetComponent<Player>();
     }
     private void OnCollisionStay(Collision collision)
     {
         if (collision.collider.CompareTag("Doos"))
         {
-            if (XCI.GetButtonDown(XboxButton.A, p.PlayerNumber))
+            if (XCI.GetButtonDown(XboxButton.X, p.PlayerNumber))
             {
-                
+                collision.collider.transform.parent = transform;
             }
         }
     }
