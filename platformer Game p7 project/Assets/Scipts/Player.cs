@@ -221,7 +221,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Ground"))
+        if (collision.collider.CompareTag("Ground") || collision.collider.CompareTag("Doos"))
         {
             grounded = true;
             
@@ -230,7 +230,7 @@ public class Player : MonoBehaviour
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.collider.CompareTag("Ground"))
+        if (collision.collider.CompareTag("Ground") || collision.collider.CompareTag("Doos"))
         {
             grounded = false;
             if(jumps < 1)
@@ -239,6 +239,7 @@ public class Player : MonoBehaviour
             }
         }
     }
+    
 
 
 
