@@ -7,11 +7,11 @@ public class lever : MonoBehaviour
 {
     
      Player p;
-    private GameManger gm;
+    public GameManger gm;
 
     private void Start()
     {
-        gm = GetComponentInParent<GameManger>();
+       
     }
 
     private void OnTriggerStay2D(Collider2D other)

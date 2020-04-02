@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     public float MaxJumping = 2;
     public float jumps = 0;
     public float Jumpingforce = 2f;
-    bool grounded = false;
+    public bool grounded = true;
     
     
 
@@ -55,6 +55,7 @@ public class Player : MonoBehaviour
 
     bool Spriting = false;
 
+    public bool lastjump;
 
     //for Powerup hold
     bool gotspeedpowerup;
@@ -104,10 +105,15 @@ public class Player : MonoBehaviour
 
         if (XCI.GetButtonDown(XboxButton.A, PlayerNumber) && grounded == false)
         {
-            if (jumps < MaxJumping)
+            if (grounded == false)
             {
-                rig2d.velocity = Vector2.up * 10;
-                jumps = jumps + 1;
+                if (lastjump == true)
+                {
+                    rig2d.velocity = Vector2.up * 10;
+                    jumps = jumps + 1;
+                    lastjump = false;
+                }
+                
 
             }
         }
@@ -129,10 +135,10 @@ public class Player : MonoBehaviour
 
         
 
-        if (XCI.GetButtonDown(XboxButton.B,PlayerNumber) && grounded == true)
-        {
-            Slidding();
-        }
+        //if (XCI.GetButtonDown(XboxButton.B,PlayerNumber) && grounded == true)
+        //{
+        //    Slidding();
+        //}
         if (srend.flipX == false && sliding == true)
         {
             rig2d.AddForce(Vector2.right * slidingspeed);
@@ -224,7 +230,7 @@ public class Player : MonoBehaviour
         if (collision.collider.CompareTag("Ground") || collision.collider.CompareTag("Doos"))
         {
             grounded = true;
-            
+            lastjump = false;
             jumps = 0;
         }
     }
@@ -233,7 +239,8 @@ public class Player : MonoBehaviour
         if (collision.collider.CompareTag("Ground") || collision.collider.CompareTag("Doos"))
         {
             grounded = false;
-            if(jumps < 1)
+            lastjump = true;
+            if (jumps < 1)
             {
                 jumps  = 1;
             }

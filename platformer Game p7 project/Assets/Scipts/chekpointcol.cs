@@ -15,6 +15,7 @@ public class chekpointcol : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             gm.changeCammera();
+            this.gameObject.SetActive(false);
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManger : MonoBehaviour
 {
@@ -12,13 +14,25 @@ public class GameManger : MonoBehaviour
     public int witchdoor = 0;
     bool test;
     int testint;
+    public int witchlever = 0;
+    public int howmanytimes;
+    public GameObject text1, text2;
+    bool eenkeer;
+    
 
     //open the door with lever
     public void OpDoor()
     {
-        lever[0].SetActive(false);
-        lever[1].SetActive(true);
+        lever[witchlever].SetActive(false);
+        lever[witchlever + 1].SetActive(true);
         doors[witchdoor].SetActive(false);
+        if(eenkeer == false)
+        {
+            text1.SetActive(false);
+            text2.SetActive(false);
+            eenkeer = true;
+        }
+        
     }
     //change the cammera vieuw if you go true the door
     public void changeCammera()
@@ -29,12 +43,23 @@ public class GameManger : MonoBehaviour
         }
         if(test == true)
         {
-            cameras[cameraone].SetActive(false);
-            cameras[cameratwo].SetActive(true);
-            cameraone += 1;
-            cameratwo += 1;
-            testint = 1;
-            test = false;
+            howmanytimes += 1;
+            if(howmanytimes == 3)
+            {
+                SceneManager.LoadScene(0);
+            }
+            else
+            {
+                cameras[cameraone].SetActive(false);
+                cameras[cameratwo].SetActive(true);
+                cameraone += 1;
+                cameratwo += 1;
+                testint = 1;
+                test = false;
+                witchlever += 2;
+            }
+            
+            
         }
         
         
@@ -45,7 +70,10 @@ public class GameManger : MonoBehaviour
         doors[witchdoor].SetActive(true);
         witchdoor += 1;
         testint = 0;
+        
+        
     }
+    
 
 
 }
