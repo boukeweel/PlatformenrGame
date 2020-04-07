@@ -18,6 +18,7 @@ public class GameManger : MonoBehaviour
     public int howmanytimes;
     public GameObject text1, text2;
     bool eenkeer;
+    bool duursleuten;
     
 
     //open the door with lever
@@ -32,6 +33,7 @@ public class GameManger : MonoBehaviour
             text2.SetActive(false);
             eenkeer = true;
         }
+        duursleuten = true;
         
     }
     //change the cammera vieuw if you go true the door
@@ -67,9 +69,14 @@ public class GameManger : MonoBehaviour
     //close the door after player whent true
     public void closedoor()
     {
-        doors[witchdoor].SetActive(true);
-        witchdoor += 1;
-        testint = 0;
+        if(duursleuten == true)
+        {
+            doors[witchdoor].SetActive(true);
+            witchdoor += 1;
+            testint = 0;
+            duursleuten = false;
+        }
+        
         
         
     }
