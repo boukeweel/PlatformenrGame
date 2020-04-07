@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class UIManger : MonoBehaviour
 {
-    public GameObject GameScene;
-    public GameObject Uiscene;
+    public GameObject gamescene;
+    public GameObject uiscene;
+    public GameObject setting;
+    public GameObject credits;
+    public GameObject mainmenu;
 
     private void Start()
     {
-        GameScene.SetActive(false);
-        Uiscene.SetActive(true);
+        gamescene.SetActive(false);
+        uiscene.SetActive(true);
+        mainmenu.SetActive(true);
+        setting.SetActive(false);
+        credits.SetActive(false);
     }
     public void Start_button()
     {
-        GameScene.SetActive(true);
-        Uiscene.SetActive(false);
+        gamescene.SetActive(true);
+        uiscene.SetActive(false);
     }
     public void Exit_button()
     {
@@ -23,7 +29,21 @@ public class UIManger : MonoBehaviour
     }
     public void backtomenu()
     {
-        GameScene.SetActive(false);
-        Uiscene.SetActive(true);
+        gamescene.SetActive(false);
+        uiscene.SetActive(true);
+        mainmenu.SetActive(true);
+        setting.SetActive(false);
+        credits.SetActive(false);
     }
+    public void CreditsMenu()
+    {
+        mainmenu.SetActive(false);
+        credits.SetActive(true);
+    }
+    public void SettingsMenu()
+    {
+        mainmenu.SetActive(false);
+        setting.SetActive(true);
+    }
+    
 }
