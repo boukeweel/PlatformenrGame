@@ -10,21 +10,36 @@ public class UIManger : MonoBehaviour
     public GameObject credits;
     public GameObject mainmenu;
 
+    bool _gamescene = false;
+    bool _uiscene = false;
+    bool _credits = false;
+    bool _mainmenu = true;
+
     private void Start()
     {
-        gamescene.SetActive(false);
-        uiscene.SetActive(true);
-        mainmenu.SetActive(true);
+        _gamescene = false;
+        _uiscene = false;
+        _credits = false;
+        _mainmenu = true;
+    }
+    private void Update()
+    {
 
-        credits.SetActive(false);
+        gamescene.SetActive(_gamescene);
+        uiscene.SetActive(_uiscene);
+        mainmenu.SetActive(_mainmenu);
+
+        credits.SetActive(_credits);
     }
     public void Start_button()
     {
         //sellect
         FindObjectOfType<audiomanger>().play("sellect");
         FindObjectOfType<audiomanger>().play("birdsounds");
-        gamescene.SetActive(true);
-        uiscene.SetActive(false);
+        _gamescene = true;
+        _uiscene = false;
+        _credits = false;
+        _mainmenu = false;
     }
     public void Exit_button()
     {
@@ -36,17 +51,18 @@ public class UIManger : MonoBehaviour
     }
     public void backtomenu()
     {
-        gamescene.SetActive(false);
-        uiscene.SetActive(true);
-        mainmenu.SetActive(true);
-        
-        credits.SetActive(false);
+        _gamescene = false;
+        _uiscene = false;
+        _credits = false;
+        _mainmenu = true;
         FindObjectOfType<audiomanger>().play("sellect");
     }
     public void CreditsMenu()
     {
-        mainmenu.SetActive(false);
-        credits.SetActive(true);
+        _gamescene = false;
+        _uiscene = false;
+        _credits = true;
+        _mainmenu = false;
         FindObjectOfType<audiomanger>().play("sellect");
     }
     
