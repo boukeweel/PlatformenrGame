@@ -22,6 +22,7 @@ public class lever : MonoBehaviour
             p = other.gameObject.GetComponent<Player>();
             if (XCI.GetButtonDown(XboxButton.X, p.PlayerNumber))
             {
+                FindObjectOfType<audiomanger>().play("Leverklik");
                 //Debug.Log("kilk");
                 gm.OpDoor();
             }

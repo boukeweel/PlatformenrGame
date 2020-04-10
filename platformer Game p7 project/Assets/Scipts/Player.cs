@@ -57,19 +57,16 @@ public class Player : MonoBehaviour
 
     public bool lastjump;
 
-    //for Powerup hold
-    bool gotspeedpowerup;
-    bool gotjumppowerup;
-    float JumpHeigthPowerup;
-    float SpeedPowerup;
-    float timeforPowerup;
-
+    bool walking = false;
+    float timer;
+    float timefortimer = 0.4f;
     private void Start()
     {
         rig2d = GetComponent<Rigidbody2D>();
         S_Speed = speed;
         srend = GetComponent<SpriteRenderer>();
         ani = GetComponent<Animator>();
+    
     }
 
     private void FixedUpdate()
@@ -82,11 +79,13 @@ public class Player : MonoBehaviour
         {
             speed = 12f;
             Spriting = true;
+            timefortimer = 0.2f;
         }
         if (XCI.GetButtonUp(XboxButton.LeftBumper, PlayerNumber))
         {
             speed = 6f;
             Spriting = false;
+            timefortimer = 0.4f;
         }
 
         //movement
@@ -94,11 +93,26 @@ public class Player : MonoBehaviour
         if (Xaxis > 0.1f)
         {
             srend.flipX = false;
-            
+            walking = true;
         }
         if(Xaxis < -0.1f)
         {
             srend.flipX = true;
+            walking = true;
+        }
+        if(Xaxis == 0)
+        {
+            walking = false;
+        }
+        if(walking == true && grounded == true)
+        {
+            timer += Time.deltaTime;
+            if(timer >= timefortimer)
+            {
+                FindObjectOfType<audiomanger>().play("Walking");
+                timer = 0;
+            }
+            
         }
 
 
@@ -111,7 +125,9 @@ public class Player : MonoBehaviour
                 {
                     rig2d.velocity = Vector2.up * 10;
                     jumps = jumps + 1;
+                    FindObjectOfType<audiomanger>().play("jump");
                     lastjump = false;
+
                 }
                 
 
@@ -127,6 +143,7 @@ public class Player : MonoBehaviour
                 S_Xasis = Xaxis;
                 S_Speed = speed;
                 jumps = 1;
+                FindObjectOfType<audiomanger>().play("jump");
 
                 grounded = false;
 
@@ -230,6 +247,7 @@ public class Player : MonoBehaviour
         if (collision.collider.CompareTag("Ground") || collision.collider.CompareTag("Doos"))
         {
             grounded = true;
+            FindObjectOfType<audiomanger>().play("Land");
             lastjump = false;
             jumps = 0;
         }

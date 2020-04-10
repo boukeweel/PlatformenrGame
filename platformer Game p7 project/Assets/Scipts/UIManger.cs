@@ -6,7 +6,7 @@ public class UIManger : MonoBehaviour
 {
     public GameObject gamescene;
     public GameObject uiscene;
-    public GameObject setting;
+    
     public GameObject credits;
     public GameObject mainmenu;
 
@@ -15,11 +15,14 @@ public class UIManger : MonoBehaviour
         gamescene.SetActive(false);
         uiscene.SetActive(true);
         mainmenu.SetActive(true);
-        setting.SetActive(false);
+
         credits.SetActive(false);
     }
     public void Start_button()
     {
+        //sellect
+        FindObjectOfType<audiomanger>().play("sellect");
+        FindObjectOfType<audiomanger>().play("birdsounds");
         gamescene.SetActive(true);
         uiscene.SetActive(false);
     }
@@ -27,23 +30,25 @@ public class UIManger : MonoBehaviour
     {
         Application.Quit();
     }
+    public void OnApplicationQuit()
+    {
+        FindObjectOfType<audiomanger>().play("sellect");
+    }
     public void backtomenu()
     {
         gamescene.SetActive(false);
         uiscene.SetActive(true);
         mainmenu.SetActive(true);
-        setting.SetActive(false);
+        
         credits.SetActive(false);
+        FindObjectOfType<audiomanger>().play("sellect");
     }
     public void CreditsMenu()
     {
         mainmenu.SetActive(false);
         credits.SetActive(true);
+        FindObjectOfType<audiomanger>().play("sellect");
     }
-    public void SettingsMenu()
-    {
-        mainmenu.SetActive(false);
-        setting.SetActive(true);
-    }
+    
     
 }
