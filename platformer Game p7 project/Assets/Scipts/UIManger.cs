@@ -18,7 +18,7 @@ public class UIManger : MonoBehaviour
     private void Start()
     {
         _gamescene = false;
-        _uiscene = false;
+        _uiscene = true;
         _credits = false;
         _mainmenu = true;
     }

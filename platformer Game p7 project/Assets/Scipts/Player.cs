@@ -9,7 +9,7 @@ public enum PlayerStatus
     Walking,
     Running,
     Jumping,
-    Sliding,
+    Landing,
     
 }
 
@@ -60,6 +60,8 @@ public class Player : MonoBehaviour
     bool walking = false;
     float timer;
     float timefortimer = 0.4f;
+
+    bool jumping = false;
     private void Start()
     {
         rig2d = GetComponent<Rigidbody2D>();
@@ -127,7 +129,7 @@ public class Player : MonoBehaviour
                     jumps = jumps + 1;
                     FindObjectOfType<audiomanger>().play("jump");
                     lastjump = false;
-
+                    jumping = true;
                 }
                 
 
@@ -143,6 +145,7 @@ public class Player : MonoBehaviour
                 S_Xasis = Xaxis;
                 S_Speed = speed;
                 jumps = 1;
+                jumping = true;
                 FindObjectOfType<audiomanger>().play("jump");
 
                 grounded = false;
@@ -171,6 +174,10 @@ public class Player : MonoBehaviour
 
     private void WelkeState()
     {
+        if (jumping == true)
+        {
+            playerStatus = PlayerStatus.Jumping;
+        }
         if (Xaxis == 0.0f)
         {
             playerStatus = PlayerStatus.Idel;
@@ -183,14 +190,8 @@ public class Player : MonoBehaviour
         {
             playerStatus = PlayerStatus.Walking;
         }
-        if (grounded == false)
-        {
-            playerStatus = PlayerStatus.Jumping;
-        }
-        if (sliding == true)
-        {
-            playerStatus = PlayerStatus.Sliding;
-        }
+        
+        
         
         ChangeAnimation();
     }
@@ -212,34 +213,13 @@ public class Player : MonoBehaviour
         }
         if (playerStatus == PlayerStatus.Jumping)
         {
-
+            ani.SetInteger("Welke", 3);
         }
-        if(playerStatus == PlayerStatus.Sliding)
-        {
-
-        }
-    }
-    public void Slidding()
-    {
-        sliding = true;
-
-        SlidingCol.enabled = true;
-        normaleCol.enabled = false;
         
-
-
-        StartCoroutine("stopSliding");
-
+        
     }
-    IEnumerator stopSliding()
-    {
-        yield return new WaitForSeconds(0.8f);
-        sliding = false;
-        normaleCol.enabled = true;
-        SlidingCol.enabled = false;
-
-
-    }
+    
+    
 
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -250,6 +230,10 @@ public class Player : MonoBehaviour
             FindObjectOfType<audiomanger>().play("Land");
             lastjump = false;
             jumps = 0;
+            jumping = false;
+            //playerStatus = PlayerStatus.Idel;
+
+            //ChangeAnimation();
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -265,7 +249,7 @@ public class Player : MonoBehaviour
         }
     }
     
-
+      
 
 
 
