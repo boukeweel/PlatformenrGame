@@ -62,6 +62,11 @@ public class Player : MonoBehaviour
     float timefortimer = 0.4f;
 
     bool jumping = false;
+    bool landing = false;
+    int eenkeer;
+    bool testing = false;
+
+   
     private void Start()
     {
         rig2d = GetComponent<Rigidbody2D>();
@@ -178,15 +183,18 @@ public class Player : MonoBehaviour
         {
             playerStatus = PlayerStatus.Jumping;
         }
-        if (Xaxis == 0.0f)
+        
+        else if (Xaxis == 0.0f && jumping == false)
         {
+            testing = true;
             playerStatus = PlayerStatus.Idel;
+
         }
         else if (Spriting == true)
         {
             playerStatus = PlayerStatus.Running;
         }
-        else 
+        else if(jumping == false)
         {
             playerStatus = PlayerStatus.Walking;
         }
@@ -195,11 +203,13 @@ public class Player : MonoBehaviour
         
         ChangeAnimation();
     }
-    
+
+   
     //change de animation
     private void ChangeAnimation()
     {
-        if(playerStatus == PlayerStatus.Idel)
+        
+        if (playerStatus == PlayerStatus.Idel)
         {
             ani.SetInteger("Welke", 0);
         }
@@ -216,7 +226,8 @@ public class Player : MonoBehaviour
             ani.SetInteger("Welke", 3);
         }
         
-        
+
+
     }
     
     
@@ -231,9 +242,7 @@ public class Player : MonoBehaviour
             lastjump = false;
             jumps = 0;
             jumping = false;
-            //playerStatus = PlayerStatus.Idel;
 
-            //ChangeAnimation();
         }
     }
     private void OnCollisionExit2D(Collision2D collision)
@@ -248,10 +257,4 @@ public class Player : MonoBehaviour
             }
         }
     }
-    
-      
-
-
-
-
 }

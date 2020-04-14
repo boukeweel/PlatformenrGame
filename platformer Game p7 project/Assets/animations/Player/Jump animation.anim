@@ -22,29 +22,23 @@ AnimationClip:
     - time: 0
       value: {fileID: -1436489367672702344, guid: 7dfd92c34d31de34eaa172e637270d65,
         type: 3}
-    - time: 0.083333336
+    - time: 0.16666667
       value: {fileID: 2408451959543201155, guid: 7dfd92c34d31de34eaa172e637270d65,
         type: 3}
-    - time: 0.16666667
+    - time: 0.3
       value: {fileID: -213673698810580501, guid: 7dfd92c34d31de34eaa172e637270d65,
         type: 3}
-    - time: 0.25
+    - time: 0.41666666
       value: {fileID: 3258140683516930695, guid: 7dfd92c34d31de34eaa172e637270d65,
         type: 3}
-    - time: 0.33333334
+    - time: 0.5833333
       value: {fileID: -4543266602413178886, guid: 7dfd92c34d31de34eaa172e637270d65,
         type: 3}
-    - time: 0.41666666
+    - time: 0.6666667
       value: {fileID: -3531496324278090627, guid: 7dfd92c34d31de34eaa172e637270d65,
         type: 3}
-    - time: 1.5
-      value: {fileID: 6337419041020379326, guid: 7dfd92c34d31de34eaa172e637270d65,
-        type: 3}
-    - time: 1.5833334
-      value: {fileID: 7555038065828054111, guid: 7dfd92c34d31de34eaa172e637270d65,
-        type: 3}
-    - time: 1.6666666
-      value: {fileID: -4495517855139703466, guid: 7dfd92c34d31de34eaa172e637270d65,
+    - time: 10.016666
+      value: {fileID: -3531496324278090627, guid: 7dfd92c34d31de34eaa172e637270d65,
         type: 3}
     attribute: m_Sprite
     path: 
@@ -71,15 +65,13 @@ AnimationClip:
     - {fileID: 3258140683516930695, guid: 7dfd92c34d31de34eaa172e637270d65, type: 3}
     - {fileID: -4543266602413178886, guid: 7dfd92c34d31de34eaa172e637270d65, type: 3}
     - {fileID: -3531496324278090627, guid: 7dfd92c34d31de34eaa172e637270d65, type: 3}
-    - {fileID: 6337419041020379326, guid: 7dfd92c34d31de34eaa172e637270d65, type: 3}
-    - {fileID: 7555038065828054111, guid: 7dfd92c34d31de34eaa172e637270d65, type: 3}
-    - {fileID: -4495517855139703466, guid: 7dfd92c34d31de34eaa172e637270d65, type: 3}
+    - {fileID: -3531496324278090627, guid: 7dfd92c34d31de34eaa172e637270d65, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.6833333
+    m_StopTime: 10.033333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -98,11 +90,4 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events:
-  - time: 0.15
-    functionName: 
-    data: 
-    objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
-    intParameter: 0
-    messageOptions: 0
+  m_Events: []
