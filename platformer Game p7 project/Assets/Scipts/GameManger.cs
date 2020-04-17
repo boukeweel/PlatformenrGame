@@ -51,13 +51,13 @@ public class GameManger : MonoBehaviour
         if(test == true)
         {
             howmanytimes += 1;
-            if(howmanytimes == 3)
+            if(howmanytimes == 4)
             {
-                if(FpU.hoeveel_opgepakt >= 51)
+                if(FpU.hoeveel_opgepakt >= 58)
                 {
                     uimg.GoodEndScreen();
                 }
-                if(FpU.hoeveel_opgepakt < 51)
+                if(FpU.hoeveel_opgepakt < 58)
                 {
                     uimg.BadEndScreen();
                 }
