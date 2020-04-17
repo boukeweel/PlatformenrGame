@@ -52,7 +52,7 @@ public class UIManger : MonoBehaviour
     public void backtomenu()
     {
         _gamescene = false;
-        _uiscene = false;
+        _uiscene = true;
         _credits = false;
         _mainmenu = true;
         FindObjectOfType<audiomanger>().play("sellect");
@@ -60,7 +60,7 @@ public class UIManger : MonoBehaviour
     public void CreditsMenu()
     {
         _gamescene = false;
-        _uiscene = false;
+        _uiscene = true;
         _credits = true;
         _mainmenu = false;
         FindObjectOfType<audiomanger>().play("sellect");

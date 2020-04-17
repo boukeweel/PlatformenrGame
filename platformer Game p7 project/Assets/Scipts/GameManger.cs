@@ -16,7 +16,7 @@ public class GameManger : MonoBehaviour
     int testint;
     public int witchlever = 0;
     public int howmanytimes;
-    public GameObject text1, text2;
+    public GameObject text1, text2,text3;
     bool eenkeer;
     bool duursleuten;
     
@@ -31,6 +31,7 @@ public class GameManger : MonoBehaviour
         {
             text1.SetActive(false);
             text2.SetActive(false);
+            text3.SetActive(false);
             eenkeer = true;
         }
         duursleuten = true;
