@@ -19,6 +19,10 @@ public class GameManger : MonoBehaviour
     public GameObject text1, text2,text3;
     bool eenkeer;
     bool duursleuten;
+
+    public Flowerpickedup FpU;
+
+    public UIManger uimg;
     
 
     //open the door with lever
@@ -49,7 +53,14 @@ public class GameManger : MonoBehaviour
             howmanytimes += 1;
             if(howmanytimes == 3)
             {
-                SceneManager.LoadScene(0);
+                if(FpU.hoeveel_opgepakt >= 51)
+                {
+                    uimg.GoodEndScreen();
+                }
+                if(FpU.hoeveel_opgepakt < 51)
+                {
+                    uimg.BadEndScreen();
+                }
             }
             else
             {

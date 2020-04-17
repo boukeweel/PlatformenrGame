@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIManger : MonoBehaviour
 {
@@ -10,10 +11,15 @@ public class UIManger : MonoBehaviour
     public GameObject credits;
     public GameObject mainmenu;
 
+    public GameObject endScreenGood;
+    public GameObject endScreenBad;
+
     bool _gamescene = false;
     bool _uiscene = false;
     bool _credits = false;
     bool _mainmenu = true;
+    bool _endscreenGood = false;
+    bool _endscreenbad = false;
 
     private void Start()
     {
@@ -30,6 +36,9 @@ public class UIManger : MonoBehaviour
         mainmenu.SetActive(_mainmenu);
 
         credits.SetActive(_credits);
+
+        endScreenGood.SetActive(_endscreenGood);
+        endScreenBad.SetActive(_endscreenbad);
     }
     public void Start_button()
     {
@@ -64,6 +73,25 @@ public class UIManger : MonoBehaviour
         _credits = true;
         _mainmenu = false;
         FindObjectOfType<audiomanger>().play("sellect");
+    }
+
+    public void GoodEndScreen()
+    {
+        _gamescene = false;
+        _uiscene = true;
+        _endscreenGood = true;
+
+    }
+    public void restartgame()
+    {
+        FindObjectOfType<audiomanger>().play("sellect");
+        SceneManager.LoadScene(0);
+    }
+    public void BadEndScreen()
+    {
+        _gamescene = false;
+        _uiscene = true;
+        _endscreenbad = true;
     }
     
     
